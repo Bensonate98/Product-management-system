@@ -60,7 +60,7 @@ const productPut = async (req, res)=>{
     if(!oldProduct){
       throw Error("query parameter required");
     }
-    if(!newProduct){
+    if(Object.keys(newProduct).length === 0){
       throw Error("update validation failed");
     }
     const product = await Product.findOneAndUpdate({productName: oldProduct}, newProduct, {new: true});
@@ -82,7 +82,7 @@ const productPutId = async (req, res)=>{
     if(!mongoose.Types.ObjectId.isValid(id)){
       throw Error("invalid product");
     }
-    if(!newProduct){
+    if(Object.keys(newProduct).length === 0){
       throw Error("update validation failed");
     }
     const product = await Product.findByIdAndUpdate(id, newProduct, {new: true});
