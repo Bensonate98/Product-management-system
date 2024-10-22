@@ -21,5 +21,5 @@ startServer();
 //Routes
 app.use(productRoutes);
 
-
+module.exports= app;
 

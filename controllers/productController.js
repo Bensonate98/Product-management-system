@@ -1,5 +1,5 @@
 const Product = require("../models/product");
-const { handleRequestError } = require("../utils/errorHandler");
+const sendErrorResponse = require("../utils/validationError");
 const mongoose = require('mongoose');
 
 
@@ -11,8 +11,7 @@ const productPost = async (req, res)=>{
     res.status(201).json({message: "Product created sucessfully", id: product._id, product: productName});
   }
   catch(err){
-    console.log(err);
-    res.status(400).json(handleRequestError(err));
+    sendErrorResponse(err, res);
   }
 };
 
@@ -30,7 +29,7 @@ const productGet = async (req, res)=>{
     return res.status(200).json({id: product._id, product: product.productName});
   }
   catch(err){
-    return res.status(404).json(handleRequestError(err));
+    sendErrorResponse(err, res);
   } 
 };
 
@@ -49,7 +48,7 @@ const productGetId = async (req, res)=>{
     return res.status(200).json({id: product._id, product: product.productName});
   }
   catch(err){
-    return res.status(404).json(handleRequestError(err));
+    sendErrorResponse(err, res);
   } 
 };
 
@@ -68,7 +67,7 @@ const productPut = async (req, res)=>{
     return res.status(200).json({message: "product updated successfully", id: product._id, product: product.productName});
   }
   catch(err){
-    return res.status(404).json(handleRequestError(err));
+    sendErrorResponse(err, res);
   }
 };
 
@@ -88,7 +87,7 @@ const productPutId = async (req, res)=>{
     return res.status(200).json({message: "product updated successfully", id: product._id, product: product.productName});
   }
   catch(err){
-    return res.status(404).json(handleRequestError(err));
+    sendErrorResponse(err, res);
   }  
 };
 
@@ -103,10 +102,10 @@ const productDelete = async (req, res)=>{
     if(product == null){
       throw Error("invalid product");
     }
-    return res.status(200).json({message: "Product deleted successfully"});
+    return res.status(200).json({message: "product deleted successfully"});
   }
   catch(err){
-    return res.status(404).json(handleRequestError(err));
+    sendErrorResponse(err, res);
   }
 };
 
@@ -125,7 +124,7 @@ const productDeleteId = async (req, res)=>{
     return res.status(200).json({message: "product deleted successfully"});
   }
   catch(err){
-    return res.status(404).json(handleRequestError(err));
+    sendErrorResponse(err, res);
   }  
 };
 
