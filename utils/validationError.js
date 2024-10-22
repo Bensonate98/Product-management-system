@@ -4,6 +4,10 @@ const sendErrorResponse = (err, res)=>{
     error = {error: "Enter a product name"};
     errorResponse = res.status(400).json(error);
   }
+  if(err.message.includes("update validation failed")){
+    error = {error: "Enter new product name"};
+    errorResponse = res.status(400).json(error);
+  }
   if(err.message.includes("query parameter required")){
     error = {error: "productName query parameter required"};
     errorResponse = res.status(400).json(error);
