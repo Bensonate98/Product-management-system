@@ -2,9 +2,12 @@ const express = require("express");
 const app = express();
 const connectDb = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
+const cors = require('cors');
 const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(cors());
+
 
 const startServer = async ()=>{
   try{
