@@ -1,4 +1,4 @@
-- Backend API's for a product management system
+Backend API's for a product management system
 - **Features**:
 - Create a new product
 - View a product using product id or product name
