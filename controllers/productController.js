@@ -77,7 +77,8 @@ const productPut = async (req, res)=>{
 // Update product with the id in a url
 const productPutId = async (req, res)=>{
   try{
-    const id = req.params.id;
+    const {id} = req.params.id;
+    console.log(id)
     const newProduct = req.body;
     if(!mongoose.Types.ObjectId.isValid(id)){
       throw Error("invalid product");
