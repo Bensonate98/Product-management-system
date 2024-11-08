@@ -5,13 +5,15 @@ const app = express();
 const connectDb = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
 const fs = require("fs");
+const path = require("path");
 const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
 
 // Load Swagger JSON file
-const swaggerDocument = JSON.parse(fs.readFileSync('./openapi.json', 'utf8'));
+const openapiPath = path.resolve(__dirname, 'openapi.json');
+const swaggerDocument = JSON.parse(fs.readFileSync(openapiPath, 'utf8'));
 // Serve Swagger UI at /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
